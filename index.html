@@ -4,22 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>受験情報ポータル</title>
-  <meta name="description" content="受験に役立つコラムと、先輩たちの受験体験記をまとめたポータルサイトです。">
+  <meta name="description" content="受験に役立つコラムと、先輩たちの受験体験記をまとめた情報ポータルです。">
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    :root {
+      --bg: #4e6686;
+      --bg-dark: #415a79;
+      --blue-light: #dce8f4;
+      --blue-pale: #eef4f9;
+      --white: #ffffff;
+      --text: #25364b;
+      --text-soft: #61738a;
+      --line: rgba(255,255,255,.55);
+      --shadow: 0 18px 45px rgba(31, 50, 74, .18);
     }
 
-    :root {
-      --blue: #1769d2;
-      --blue-dark: #0d47a1;
-      --blue-light: #eaf3ff;
-      --text: #18324f;
-      --muted: #64748b;
-      --white: #ffffff;
+    * {
+      box-sizing: border-box;
     }
 
     html {
@@ -27,75 +28,127 @@
     }
 
     body {
-      min-height: 100vh;
+      margin: 0;
       font-family:
-        -apple-system, BlinkMacSystemFont, "Segoe UI",
-        "Hiragino Kaku Gothic ProN", "Hiragino Sans",
-        "Yu Gothic", YuGothic, Meiryo, sans-serif;
+        -apple-system,
+        BlinkMacSystemFont,
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans",
+        "Yu Gothic",
+        "YuGothic",
+        "Noto Sans JP",
+        sans-serif;
       color: var(--text);
-      background:
-        radial-gradient(circle at 15% 10%, rgba(86, 157, 255, 0.20), transparent 28%),
-        radial-gradient(circle at 85% 25%, rgba(42, 116, 220, 0.14), transparent 30%),
-        linear-gradient(135deg, #f7fbff 0%, #edf5ff 48%, #ffffff 100%);
-      overflow-x: hidden;
+      background: var(--bg);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ===== Header ===== */
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ---------- Header ---------- */
+
     header {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
+      right: 0;
       z-index: 20;
-      padding: 18px 6%;
+      padding: 18px 28px;
+    }
+
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      height: 58px;
+      padding: 0 22px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(23, 105, 210, 0.08);
+      justify-content: space-between;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 18px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
     }
 
     .logo {
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      color: var(--blue-dark);
-    }
-
-    .header-link {
-      color: var(--blue);
-      text-decoration: none;
-      font-size: 14px;
+      color: var(--white);
+      font-size: 15px;
       font-weight: 700;
+      letter-spacing: .08em;
     }
 
-    /* ===== Hero ===== */
+    .header-note {
+      color: rgba(255,255,255,.82);
+      font-size: 12px;
+      letter-spacing: .04em;
+    }
+
+    /* ---------- Hero ---------- */
+
     .hero {
-      min-height: 100vh;
-      padding: 150px 6% 90px;
+      min-height: 100svh;
+      padding: 150px 24px 110px;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 25%, rgba(255,255,255,.08), transparent 28%),
+        radial-gradient(circle at 85% 70%, rgba(255,255,255,.07), transparent 30%),
+        var(--bg);
     }
 
-    .hero-inner {
-      width: min(1050px, 100%);
+    /* soft cloud-like shapes for a calm, reassuring feeling */
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(220,232,244,.08);
+      filter: blur(2px);
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 360px;
+      height: 180px;
+      top: 18%;
+      left: -100px;
+    }
+
+    .hero::after {
+      width: 420px;
+      height: 210px;
+      right: -130px;
+      bottom: 8%;
+    }
+
+    .hero-content {
+      width: min(920px, 100%);
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 15px;
+      margin-bottom: 24px;
+      padding: 7px 14px;
       border-radius: 999px;
-      background: rgba(23, 105, 210, 0.09);
-      color: var(--blue);
-      font-size: 13px;
-      font-weight: 800;
-      margin-bottom: 22px;
+      color: var(--white);
+      background: rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.23);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
     }
 
     .eyebrow::before {
@@ -103,196 +156,253 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: var(--blue);
+      background: #dce8f4;
+      box-shadow: 0 0 0 4px rgba(220,232,244,.12);
     }
 
     h1 {
-      font-size: clamp(42px, 7vw, 78px);
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-      color: #12345a;
-      margin-bottom: 24px;
+      margin: 0;
+      color: var(--white);
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.28;
+      font-weight: 800;
+      letter-spacing: .01em;
+    }
+
+    h1 .line {
+      display: block;
     }
 
     .hero-copy {
-      max-width: 650px;
-      margin: 0 auto;
-      color: var(--muted);
-      line-height: 1.9;
-      font-size: clamp(15px, 2vw, 18px);
+      margin: 25px auto 0;
+      color: rgba(255,255,255,.86);
+      font-size: clamp(14px, 2vw, 17px);
+      line-height: 2;
     }
 
     .scroll-hint {
-      margin-top: 46px;
-      color: #7890aa;
-      font-size: 12px;
-      letter-spacing: 0.15em;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 55px;
+      color: rgba(255,255,255,.68);
+      font-size: 11px;
+      letter-spacing: .12em;
     }
 
     .scroll-hint span {
       display: block;
       width: 1px;
-      height: 42px;
-      background: #9ab5d4;
-      margin: 12px auto 0;
+      height: 30px;
+      background: rgba(255,255,255,.5);
     }
 
-    /* ===== Cards ===== */
+    /* ---------- Contents ---------- */
+
     .contents {
-      width: min(1050px, 88%);
+      position: relative;
+      padding: 105px 24px 115px;
+      background: var(--blue-pale);
+      border-radius: 42px 42px 0 0;
+    }
+
+    .contents-inner {
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 30px 0 120px;
     }
 
-    .section-title {
+    .section-heading {
       text-align: center;
-      margin-bottom: 42px;
+      margin-bottom: 45px;
     }
 
-    .section-title small {
-      display: block;
-      color: var(--blue);
+    .section-label {
+      color: #7187a0;
+      font-size: 11px;
       font-weight: 800;
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      margin-bottom: 10px;
+      letter-spacing: .16em;
     }
 
-    .section-title h2 {
-      font-size: clamp(28px, 4vw, 42px);
-      color: #163b63;
+    .section-heading h2 {
+      margin: 9px 0 8px;
+      color: var(--text);
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.35;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 14px;
     }
 
     .cards {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 28px;
+      gap: 24px;
     }
 
     .card {
-      position: relative;
-      min-height: 330px;
-      padding: 42px;
-      border-radius: 28px;
-      background: rgba(255, 255, 255, 0.88);
-      border: 1px solid rgba(23, 105, 210, 0.12);
-      box-shadow: 0 18px 50px rgba(31, 83, 139, 0.10);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      width: 170px;
-      height: 170px;
-      right: -70px;
-      top: -70px;
-      border-radius: 50%;
-      background: var(--blue-light);
+      padding: 34px;
+      background: var(--white);
+      border: 1px solid rgba(78,102,134,.10);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      transition: transform .22s ease, box-shadow .22s ease;
     }
 
     .card:hover {
-      transform: translateY(-7px);
-      box-shadow: 0 25px 65px rgba(31, 83, 139, 0.16);
+      transform: translateY(-5px);
+      box-shadow: 0 24px 55px rgba(31,50,74,.22);
     }
 
-    .icon {
-      position: relative;
-      z-index: 1;
-      width: 64px;
-      height: 64px;
+    .card-icon {
+      width: 58px;
+      height: 58px;
       display: grid;
       place-items: center;
-      border-radius: 18px;
-      background: linear-gradient(145deg, #e8f2ff, #d9eaff);
-      font-size: 29px;
-      margin-bottom: 25px;
+      margin-bottom: 22px;
+      border-radius: 17px;
+      background: var(--blue-light);
+      font-size: 25px;
     }
 
     .card h3 {
-      font-size: 29px;
-      color: #164d89;
-      margin-bottom: 13px;
+      margin: 0 0 9px;
+      color: var(--text);
+      font-size: 23px;
+      line-height: 1.45;
     }
 
     .card p {
-      color: var(--muted);
-      line-height: 1.8;
-      font-size: 15px;
-      max-width: 420px;
+      min-height: 58px;
+      margin: 0 0 25px;
+      color: var(--text-soft);
+      font-size: 14px;
+      line-height: 1.9;
     }
 
-    .button {
-      position: relative;
-      z-index: 2;
-      margin-top: 30px;
-      display: inline-flex;
+    .card-button {
+      width: 100%;
+      min-height: 54px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      width: fit-content;
-      min-width: 190px;
-      padding: 15px 24px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #2380e8, #0d57b7);
-      color: white;
-      text-decoration: none;
-      font-weight: 800;
-      font-size: 15px;
-      box-shadow: 0 10px 25px rgba(23, 105, 210, 0.25);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      gap: 8px;
+      border-radius: 15px;
+      color: var(--white);
+      background: var(--bg);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      transition: background .2s ease, transform .2s ease;
     }
 
-    .button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(23, 105, 210, 0.32);
+    .card-button:hover {
+      background: var(--bg-dark);
     }
 
-    .button::after {
+    .card-button::after {
       content: "→";
       font-size: 18px;
-      transition: transform 0.2s ease;
+      transition: transform .2s ease;
     }
 
-    .button:hover::after {
+    .card-button:hover::after {
       transform: translateX(4px);
     }
 
-    /* ===== Footer ===== */
+    /* ---------- Footer ---------- */
+
     footer {
-      padding: 35px 6%;
+      padding: 28px 24px 35px;
       text-align: center;
-      background: #0d3768;
-      color: rgba(255,255,255,0.75);
-      font-size: 12px;
+      color: rgba(255,255,255,.68);
+      background: var(--bg-dark);
+      font-size: 11px;
+      letter-spacing: .05em;
     }
 
-    /* ===== Responsive ===== */
-    @media (max-width: 760px) {
+    /* ---------- Mobile ---------- */
+
+    @media (max-width: 700px) {
       header {
-        padding: 15px 5%;
+        padding: 12px 14px;
       }
 
-      .header-link {
+      .header-inner {
+        height: 52px;
+        padding: 0 17px;
+        border-radius: 16px;
+      }
+
+      .header-note {
         display: none;
       }
 
       .hero {
-        min-height: 88vh;
-        padding: 120px 7% 60px;
+        min-height: 92svh;
+        padding: 120px 20px 85px;
+      }
+
+      .eyebrow {
+        margin-bottom: 20px;
+        font-size: 10px;
+      }
+
+      h1 {
+        /* 「受験に役立つ情報を、」「ここから」の2行を維持 */
+        font-size: 34px;
+        line-height: 1.45;
+        letter-spacing: 0;
+      }
+
+      h1 .line {
+        white-space: nowrap;
+      }
+
+      .hero-copy {
+        margin-top: 20px;
+        font-size: 13px;
+        line-height: 1.9;
+      }
+
+      .scroll-hint {
+        margin-top: 42px;
+      }
+
+      .contents {
+        padding: 78px 18px 85px;
+        border-radius: 30px 30px 0 0;
+      }
+
+      .section-heading {
+        margin-bottom: 30px;
+      }
+
+      .section-heading p {
+        font-size: 13px;
       }
 
       .cards {
         grid-template-columns: 1fr;
+        gap: 17px;
       }
 
       .card {
-        min-height: 300px;
-        padding: 32px;
+        padding: 27px 24px;
+        border-radius: 22px;
+      }
+
+      .card p {
+        min-height: auto;
+        margin-bottom: 22px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      h1 {
+        font-size: 30px;
       }
     }
   </style>
@@ -301,16 +411,21 @@
 <body>
 
   <header>
-    <div class="logo">受験情報ポータル</div>
-    <a href="#contents" class="header-link">CONTENTS ↓</a>
+    <div class="header-inner">
+      <div class="logo">受験情報ポータル</div>
+      <div class="header-note">EXAM INFORMATION</div>
+    </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="hero-inner">
+      <div class="hero-content">
         <div class="eyebrow">EXAM INFORMATION PORTAL</div>
 
-        <h1>受験に役立つ情報を、<br>ここから。</h1>
+        <h1>
+          <span class="line">受験に役立つ情報を、</span>
+          <span class="line">ここから。</span>
+        </h1>
 
         <p class="hero-copy">
           勉強法や受験に役立つコラムと、<br>
@@ -318,62 +433,58 @@
         </p>
 
         <div class="scroll-hint">
-          SCROLL TO EXPLORE
           <span></span>
+          SCROLL TO EXPLORE
         </div>
       </div>
     </section>
 
-    <section class="contents" id="contents">
-      <div class="section-title">
-        <small>CONTENTS</small>
-        <h2>知りたい情報を選ぶ</h2>
-      </div>
+    <section class="contents">
+      <div class="contents-inner">
 
-      <div class="cards">
+        <div class="section-heading">
+          <div class="section-label">CONTENTS</div>
+          <h2>知りたい情報を、ここから。</h2>
+          <p>気になるページを選んで、ゆっくり見てみてください。</p>
+        </div>
 
-        <!-- コラム -->
-        <article class="card">
-          <div>
-            <div class="icon">📝</div>
+        <div class="cards">
+
+          <article class="card">
+            <div class="card-icon">📝</div>
             <h3>コラム</h3>
             <p>
-              勉強法や受験準備など、受験に役立つ情報をまとめています。
-              気になるテーマからチェックしてみてください。
+              勉強法や受験に関する情報をまとめています。
+              受験勉強のヒントを探している人へ。
             </p>
-          </div>
+            <a
+              class="card-button"
+              href="https://green-radium-99e.notion.site/33f06cebba0180d19b5ec3e684bb0b3b"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              コラムを見る
+            </a>
+          </article>
 
-          <a
-            class="button"
-            href="https://green-radium-99e.notion.site/33f06cebba0180d19b5ec3e684bb0b3b"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            コラムを見る
-          </a>
-        </article>
-
-        <!-- 受験体験記 -->
-        <article class="card">
-          <div>
-            <div class="icon">🎓</div>
+          <article class="card">
+            <div class="card-icon">🎓</div>
             <h3>受験体験記</h3>
             <p>
-              実際に受験を経験した先輩たちの体験記を読むことができます。
-              受験生活や勉強の参考にしてください。
+              先輩たちが実際に経験した受験について、
+              リアルな体験記を読むことができます。
             </p>
-          </div>
+            <a
+              class="card-button"
+              href="https://green-radium-99e.notion.site/33106cebba018027965bf563a75de9f2?v=33106cebba0180a4b02f000c1fd9a126"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              受験体験記を見る
+            </a>
+          </article>
 
-          <a
-            class="button"
-            href="https://green-radium-99e.notion.site/33106cebba018027965bf563a75de9f2?v=33106cebba0180a4b02f000c1fd9a126"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            受験体験記を見る
-          </a>
-        </article>
-
+        </div>
       </div>
     </section>
   </main>
